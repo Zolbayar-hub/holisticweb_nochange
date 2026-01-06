@@ -1,0 +1,16 @@
+api_key.json
+.env
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# instance/
+.DS_Store
+*.swp
+*.bak
+.idea/
+.vscode/
+creds.json
+*.json
