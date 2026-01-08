@@ -13,13 +13,14 @@ def check_mobile_services():
         
         # Check for proper mobile implementation
         checks = [
-            ('padding: 1.5rem', "Service card padding"),
+            ('padding: 1.2rem', "Service card padding (updated)"),
             ('border-radius: 15px', "Service card styling"),  
             ('box-shadow: 0 5px 15px', "Service card shadow"),
-            ('height: 200px', "Mobile image height"),
-            ('margin: 0 40px', "Container margins"),
+            ('height: 280px', "Mobile image height (bigger)"),
+            ('margin: 0 20px', "Container margins (reduced)"),
             ('calc(100% - 0rem)', "Card width calculation"),
             ('text-align: center', "Card text alignment"),
+            ('gap: 1.5rem', "Reduced gap between cards"),
         ]
         
         for check_text, description in checks:
@@ -29,11 +30,12 @@ def check_mobile_services():
                 print(f"❌ {description} missing")
         
         print("\n📱 Current Mobile Approach:")
-        print("• Single card per view with proper padding")
+        print("• Single card per view with optimized padding")
         print("• Card-like appearance with shadows and borders") 
-        print("• Full image visibility (200px height)")
-        print("• Navigation buttons visible but smaller")
-        print("• Proper text spacing and alignment")
+        print("• BIGGER image visibility (280px height)")
+        print("• WIDER cards with reduced margins (20px)")
+        print("• Compact text spacing for better fit")
+        print("• Smaller navigation buttons")
         print("• Swipe gesture support maintained")
         
         return True

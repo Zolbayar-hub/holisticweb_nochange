@@ -361,9 +361,9 @@ class ServicesCarousel {
         
         // Simple approach: calculate card width + gap for mobile
         if (window.innerWidth <= 768) {
-            // On mobile, each card takes full container width
+            // On mobile, each card takes full container width with reduced margins
             const containerWidth = this.grid.parentElement.offsetWidth;
-            const translateX = -(this.currentIndex * (containerWidth + 32)); // container width + gap
+            const translateX = -(this.currentIndex * (containerWidth + 24)); // container width + reduced gap
             this.grid.style.transform = `translateX(${translateX}px)`;
         } else {
             // Desktop uses the original calculation
