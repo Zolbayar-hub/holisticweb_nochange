@@ -1244,17 +1244,34 @@ body {
     /* Mobile services section */
     .services {
         padding: 80px 0; /* Remove horizontal padding to prevent overflow */
+        overflow-x: hidden; /* Explicitly prevent horizontal overflow */
+    }
+    
+    .services .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Prevent container overflow */
+    }
+    
+    /* Ensure section title is properly contained */
+    .services .section-title {
+        padding: 0 1.5rem; /* Add horizontal padding for title */
+        font-size: 2rem; /* Slightly smaller on mobile */
+        margin-bottom: 2rem; /* Reduce bottom margin */
+    }
+    
+    .mobile-swipe-hint {
+        padding: 0 1.5rem; /* Add padding to swipe hint */
     }
     
     /* Mobile carousel styles */
     .services-container {
         margin: 0; /* Remove margins that can cause overflow */
         overflow: hidden; /* Prevent horizontal scrolling */
-        width: 100vw; /* Use full viewport width */
-        max-width: 100vw;
+        width: 100%; /* Use 100% instead of 100vw */
+        max-width: 100%;
         position: relative;
-        left: 50%;
-        transform: translateX(-50%); /* Center the full-width container */
     }
     
     .services-grid {
@@ -1263,18 +1280,18 @@ body {
         -webkit-overflow-scrolling: touch;
         overscroll-behavior-x: contain;
         will-change: transform; /* Optimize for smooth animations */
-        width: calc(100vw * var(--total-cards, 5)); /* Dynamic width based on number of cards */
+        width: calc(100% * var(--total-cards, 5)); /* Dynamic width based on number of cards */
         display: flex;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth easing */
     }
     
     .service-card {
-        flex: 0 0 100vw; /* Full viewport width */
-        min-width: 100vw;
+        flex: 0 0 100%; /* Use 100% instead of 100vw to prevent overflow */
+        min-width: 100%;
         padding: 0; /* Remove all padding */
         border-radius: 0; /* Remove border radius */
         margin: 0; /* Remove all margins */
-        width: 100vw;
+        width: 100%;
         box-shadow: none; /* Remove shadow on mobile for cleaner look */
         position: relative;
         background: white;
@@ -1282,6 +1299,7 @@ body {
         display: flex;
         flex-direction: column;
         border-bottom: 1px solid #eee; /* Add subtle separation between cards */
+        box-sizing: border-box; /* Ensure padding is included in width calculation */
     }
     
     .service-image {
@@ -1308,18 +1326,24 @@ body {
     .service-book-btn {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
+        word-wrap: break-word; /* Ensure long words break properly */
+        overflow-wrap: break-word; /* Better text wrapping */
     }
     
     .service-card h3 {
         padding-top: 1.5rem;
         margin-bottom: 1rem;
         font-size: 1.3rem;
+        line-height: 1.4; /* Better line spacing */
+        color: #333;
     }
     
     .service-card p {
         margin-bottom: 0.8rem;
         font-size: 0.95rem;
         line-height: 1.5;
+        color: #555;
+        text-align: left; /* Ensure proper text alignment */
     }
     
     .service-book-btn {
@@ -1329,6 +1353,10 @@ body {
         font-size: 0.9rem;
         align-self: flex-start;
         margin-left: 1.5rem;
+        margin-right: 1.5rem;
+        width: auto; /* Ensure button doesn't stretch too wide */
+        max-width: calc(100% - 3rem); /* Account for left/right margins */
+        box-sizing: border-box;
     }
     
     .about-carousel-wrapper {
@@ -1381,11 +1409,9 @@ body {
     
     .testimonials-container {
         margin: 0; /* Remove margins that can cause overflow */
-        width: 100vw;
-        max-width: 100vw;
+        width: 100%;
+        max-width: 100%;
         position: relative;
-        left: 50%;
-        transform: translateX(-50%);
         overflow: hidden;
     }
     
@@ -1396,12 +1422,14 @@ body {
     }
     
     .testimonial-card {
-        flex: 0 0 100vw;
-        min-width: 100vw;
+        flex: 0 0 100%;
+        min-width: 100%;
         margin: 0;
         border-radius: 0;
         box-shadow: none;
         border-bottom: 1px solid #eee;
+        box-sizing: border-box;
+        padding: 2rem 1.5rem; /* Add proper padding */
     }
     
     .testimonial-carousel-btn {

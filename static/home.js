@@ -362,9 +362,9 @@ class ServicesCarousel {
         const isMobile = window.innerWidth <= 768;
         
         if (isMobile) {
-            // On mobile, use viewport-width-based translation for full-width cards
+            // On mobile, use percentage-based translation for full-width cards
             const translateX = -(this.currentIndex * 100);
-            this.grid.style.transform = `translateX(${translateX}vw)`;
+            this.grid.style.transform = `translateX(${translateX}%)`;
             
             // Update CSS custom property for dynamic width calculation
             this.grid.style.setProperty('--total-cards', this.cards.length);
