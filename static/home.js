@@ -190,8 +190,6 @@ class ServicesCarousel {
         this.grid = document.getElementById('services-grid');
         this.prevBtn = document.getElementById('carousel-prev');
         this.nextBtn = document.getElementById('carousel-next');
-        this.indicators = document.getElementById('mobile-indicators');
-        this.indicatorDots = this.indicators ? this.indicators.querySelectorAll('.indicator-dot') : [];
         this.cards = this.grid ? this.grid.querySelectorAll('.service-card') : [];
         this.currentIndex = 0;
         this.cardsToShow = window.innerWidth <= 768 ? 1 : 3; // Show 1 on mobile, 3 on desktop
@@ -237,15 +235,6 @@ class ServicesCarousel {
         }
         if (this.nextBtn) {
             this.nextBtn.addEventListener('click', () => this.next());
-        }
-        
-        // Setup indicator dots for mobile
-        if (this.indicatorDots.length > 0) {
-            this.indicatorDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    this.goToSlide(index);
-                });
-            });
         }
         
         // Enhanced touch/swipe support for mobile
@@ -334,7 +323,6 @@ class ServicesCarousel {
             this.currentIndex--;
             this.updateCarousel();
             this.updateButtons();
-            this.updateIndicators();
         }
     }
     
@@ -344,7 +332,6 @@ class ServicesCarousel {
             this.currentIndex++;
             this.updateCarousel();
             this.updateButtons();
-            this.updateIndicators();
         }
     }
     
@@ -353,7 +340,6 @@ class ServicesCarousel {
         this.currentIndex = Math.max(0, Math.min(index, maxIndex));
         this.updateCarousel();
         this.updateButtons();
-        this.updateIndicators();
     }
     
     updateCarousel() {
@@ -379,14 +365,6 @@ class ServicesCarousel {
         
         this.prevBtn.disabled = this.currentIndex === 0;
         this.nextBtn.disabled = this.currentIndex >= maxIndex;
-    }
-    
-    updateIndicators() {
-        if (this.indicatorDots.length > 0) {
-            this.indicatorDots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === this.currentIndex);
-            });
-        }
     }
     
     hideCarouselButtons() {
