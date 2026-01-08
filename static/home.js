@@ -359,26 +359,18 @@ class ServicesCarousel {
     updateCarousel() {
         if (!this.grid) return;
         
-        const isMobile = window.innerWidth <= 768;
-        
-        if (isMobile) {
-            // On mobile, use percentage-based translation for full-width cards
-            const translateX = -(this.currentIndex * 100);
-            this.grid.style.transform = `translateX(${translateX}%)`;
-            
-            // Update CSS custom property for dynamic width calculation
-            this.grid.style.setProperty('--total-cards', this.cards.length);
+        // Simple approach: calculate card width + gap for mobile
+        if (window.innerWidth <= 768) {
+            // On mobile, each card takes full container width
+            const containerWidth = this.grid.parentElement.offsetWidth;
+            const translateX = -(this.currentIndex * (containerWidth + 32)); // container width + gap
+            this.grid.style.transform = `translateX(${translateX}px)`;
         } else {
             // Desktop uses the original calculation
             const cardWidth = this.cards[0].offsetWidth;
             const gap = 32; // 2rem in pixels
             const translateX = -(this.currentIndex * (cardWidth + gap));
             this.grid.style.transform = `translateX(${translateX}px)`;
-        }
-        
-        // Add smooth transition for programmatic changes
-        if (!this.grid.style.transition.includes('transform')) {
-            this.grid.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         }
     }
     
