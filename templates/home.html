@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Bio Energy healer and Sound Therapy- Heal Your Mind, Body & Spirit</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Optimized for mobile performance -->
+    <style>
+        html, body { 
+            -webkit-overflow-scrolling: touch; 
+            overscroll-behavior: contain;
+        }
+        .services-carousel {
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+        }
+        .services-grid {
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
 </head>
 <body>
     <!-- Header with Navigation -->
@@ -104,6 +118,11 @@
         <section class="services" id="services">
             <div class="container">
                 <h2 class="section-title">Our Therapeutic Services</h2>
+                <div class="mobile-swipe-hint" style="display: none;">
+                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                        👈 Swipe left or right to explore our services 👉
+                    </p>
+                </div>
                 <div class="services-carousel">
                     <button class="carousel-btn carousel-btn-prev" id="carousel-prev">&lt;</button>
                     <div class="services-container">
@@ -127,6 +146,13 @@
                         </div>
                     </div>
                     <button class="carousel-btn carousel-btn-next" id="carousel-next">&gt;</button>
+                    
+                    <!-- Mobile indicators -->
+                    <div class="mobile-carousel-indicators" id="mobile-indicators">
+                        {% for service in services %}
+                        <div class="indicator-dot{% if loop.first %} active{% endif %}" data-index="{{ loop.index0 }}"></div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </section>

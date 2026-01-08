@@ -190,6 +190,8 @@ class ServicesCarousel {
         this.grid = document.getElementById('services-grid');
         this.prevBtn = document.getElementById('carousel-prev');
         this.nextBtn = document.getElementById('carousel-next');
+        this.indicators = document.getElementById('mobile-indicators');
+        this.indicatorDots = this.indicators ? this.indicators.querySelectorAll('.indicator-dot') : [];
         this.cards = this.grid ? this.grid.querySelectorAll('.service-card') : [];
         this.currentIndex = 0;
         this.cardsToShow = window.innerWidth <= 768 ? 1 : 3; // Show 1 on mobile, 3 on desktop
@@ -237,40 +239,94 @@ class ServicesCarousel {
             this.nextBtn.addEventListener('click', () => this.next());
         }
         
-        // Add touch/swipe support for mobile
-        if (this.grid && window.innerWidth <= 768) {
-            let startX = 0;
-            let isDragging = false;
-            
-            this.grid.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                isDragging = true;
-            }, { passive: true });
-            
-            this.grid.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-            }, { passive: false });
-            
-            this.grid.addEventListener('touchend', (e) => {
-                if (!isDragging) return;
-                isDragging = false;
-                
-                const endX = e.changedTouches[0].clientX;
-                const diff = startX - endX;
-                const minSwipeDistance = 50;
-                
-                if (Math.abs(diff) > minSwipeDistance) {
-                    if (diff > 0) {
-                        // Swiped left - go to next
-                        this.next();
-                    } else {
-                        // Swiped right - go to previous
-                        this.prev();
-                    }
-                }
-            }, { passive: true });
+        // Setup indicator dots for mobile
+        if (this.indicatorDots.length > 0) {
+            this.indicatorDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    this.goToSlide(index);
+                });
+            });
         }
+        
+        // Enhanced touch/swipe support for mobile
+        this.setupTouchSupport();
+    }
+    
+    setupTouchSupport() {
+        if (!this.grid) return;
+        
+        let startX = 0;
+        let startY = 0;
+        let isDragging = false;
+        let startTime = 0;
+        
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) return; // Only add touch support on mobile
+        
+        // Prevent default touch behaviors that might interfere
+        this.grid.style.touchAction = 'pan-x';
+        
+        this.grid.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            startTime = Date.now();
+            isDragging = true;
+            
+            // Prevent text selection and other default behaviors
+            e.preventDefault();
+        }, { passive: false });
+        
+        this.grid.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            
+            const touch = e.touches[0];
+            const deltaX = Math.abs(touch.clientX - startX);
+            const deltaY = Math.abs(touch.clientY - startY);
+            
+            // If horizontal movement is more significant, prevent vertical scrolling
+            if (deltaX > deltaY && deltaX > 10) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        this.grid.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const touch = e.changedTouches[0];
+            const endX = touch.clientX;
+            const endY = touch.clientY;
+            const timeDiff = Date.now() - startTime;
+            
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+            const absDiffX = Math.abs(diffX);
+            const absDiffY = Math.abs(diffY);
+            
+            // Only trigger swipe if:
+            // 1. Horizontal movement is more significant than vertical
+            // 2. Minimum distance is met
+            // 3. Swipe was reasonably fast (under 500ms)
+            if (absDiffX > absDiffY && absDiffX > 50 && timeDiff < 500) {
+                if (diffX > 0) {
+                    // Swiped left - go to next
+                    this.next();
+                } else {
+                    // Swiped right - go to previous  
+                    this.prev();
+                }
+            }
+        }, { passive: true });
+        
+        // Add visual feedback on touch
+        this.grid.addEventListener('touchstart', () => {
+            this.grid.style.opacity = '0.8';
+        });
+        
+        this.grid.addEventListener('touchend', () => {
+            this.grid.style.opacity = '1';
+        });
     }
     
     prev() {
@@ -278,6 +334,7 @@ class ServicesCarousel {
             this.currentIndex--;
             this.updateCarousel();
             this.updateButtons();
+            this.updateIndicators();
         }
     }
     
@@ -287,22 +344,41 @@ class ServicesCarousel {
             this.currentIndex++;
             this.updateCarousel();
             this.updateButtons();
+            this.updateIndicators();
         }
+    }
+    
+    goToSlide(index) {
+        const maxIndex = this.cards.length - this.cardsToShow;
+        this.currentIndex = Math.max(0, Math.min(index, maxIndex));
+        this.updateCarousel();
+        this.updateButtons();
+        this.updateIndicators();
     }
     
     updateCarousel() {
         if (!this.grid) return;
         
-        // On mobile, use percentage-based translation for smoother movement
-        if (window.innerWidth <= 768) {
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            // On mobile, use viewport-width-based translation for full-width cards
             const translateX = -(this.currentIndex * 100);
-            this.grid.style.transform = `translateX(${translateX}%)`;
+            this.grid.style.transform = `translateX(${translateX}vw)`;
+            
+            // Update CSS custom property for dynamic width calculation
+            this.grid.style.setProperty('--total-cards', this.cards.length);
         } else {
             // Desktop uses the original calculation
             const cardWidth = this.cards[0].offsetWidth;
             const gap = 32; // 2rem in pixels
             const translateX = -(this.currentIndex * (cardWidth + gap));
             this.grid.style.transform = `translateX(${translateX}px)`;
+        }
+        
+        // Add smooth transition for programmatic changes
+        if (!this.grid.style.transition.includes('transform')) {
+            this.grid.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         }
     }
     
@@ -315,6 +391,14 @@ class ServicesCarousel {
         this.nextBtn.disabled = this.currentIndex >= maxIndex;
     }
     
+    updateIndicators() {
+        if (this.indicatorDots.length > 0) {
+            this.indicatorDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === this.currentIndex);
+            });
+        }
+    }
+    
     hideCarouselButtons() {
         if (this.prevBtn) this.prevBtn.style.display = 'none';
         if (this.nextBtn) this.nextBtn.style.display = 'none';
@@ -323,6 +407,27 @@ class ServicesCarousel {
     showCarouselButtons() {
         if (this.prevBtn) this.prevBtn.style.display = 'block';
         if (this.nextBtn) this.nextBtn.style.display = 'block';
+    }
+    
+    hideSwipeHint() {
+        const hint = document.querySelector('.mobile-swipe-hint');
+        if (hint) {
+            hint.style.display = 'none';
+        }
+    }
+    
+    // Hide swipe hint after first interaction
+    hideSwipeHintAfterInteraction() {
+        setTimeout(() => {
+            const hint = document.querySelector('.mobile-swipe-hint');
+            if (hint) {
+                hint.style.opacity = '0';
+                hint.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    hint.style.display = 'none';
+                }, 500);
+            }
+        }, 3000); // Hide after 3 seconds
     }
 }
 

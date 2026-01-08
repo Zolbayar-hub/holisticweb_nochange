@@ -12,10 +12,10 @@ SQLAlchemy>=2.0.0
 
 # Security and authentication
 Flask-Login>=0.6.0
-Werkzeug>=2.3.0
+Werkzeug>=2.3.0,<3.0.0
 
 # File watching for development server
-watchdog>=4.0.0
+watchdog>=3.0.0,<4.0.0
 
 # HTTP requests for testing
 requests>=2.31.0
