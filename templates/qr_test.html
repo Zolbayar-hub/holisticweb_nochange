@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Test - Serenity Wellness Studio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background: #f8f9fa;
+        }
+        .qr-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        .status {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success { 
+            background: #d4edda; 
+            color: #155724; 
+            border: 1px solid #c3e6cb;
+        }
+        .error { 
+            background: #f8d7da; 
+            color: #721c24; 
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .btn-primary { background: #2c5530; color: white; }
+        .btn-secondary { background: #666; color: white; }
+    </style>
+</head>
+<body>
+    <h1>🧪 QR Code Test Page</h1>
+    <p>Testing Google Review QR Code Implementation</p>
+    
+    <div class="qr-container">
+        <h3>Google Review QR Code</h3>
+        <img src="{{ url_for('static', filename='images/qr-codes/google-review-qr.png') }}" 
+             alt="Google Review QR Code" 
+             class="qr-code"
+             onload="showStatus('success', '✅ QR code loaded successfully!')"
+             onerror="showStatus('error', '❌ Failed to load QR code. Check file path and permissions.')">
+        
+        <div id="status"></div>
+        
+        <div class="info">
+            <p><strong>File URL:</strong><br>
+            <code>{{ url_for('static', filename='images/qr-codes/google-review-qr.png') }}</code></p>
+        </div>
+        
+        <h4>📱 Test Instructions:</h4>
+        <ol style="text-align: left; max-width: 400px; margin: 0 auto;">
+            <li>Open your phone's camera app</li>
+            <li>Point it at the QR code above</li>
+            <li>Tap the notification/link that appears</li>
+            <li>It should open your Google Business Profile review page</li>
+        </ol>
+        
+        <div style="margin-top: 30px;">
+            <a href="{{ url_for('main.home') }}" class="btn btn-primary">← Back to Main Website</a>
+            <a href="{{ url_for('main.test_qr_direct') }}" class="btn btn-secondary">🔍 Test File Access (JSON)</a>
+        </div>
+    </div>
+
+    <script>
+        function showStatus(type, message) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = 'status ' + type;
+            statusDiv.innerHTML = message;
+        }
+        
+        // Test if file exists by trying to fetch it
+        const qrUrl = "{{ url_for('static', filename='images/qr-codes/google-review-qr.png') }}";
+        
+        fetch(qrUrl)
+            .then(response => {
+                if (response.ok) {
+                    console.log('✅ QR code file is accessible via HTTP');
+                    return response.blob();
+                } else {
+                    throw new Error('HTTP ' + response.status);
+                }
+            })
+            .then(blob => {
+                console.log('✅ QR code file size:', blob.size, 'bytes');
+                if (blob.size < 100) {
+                    showStatus('error', '⚠️ QR code file seems too small (' + blob.size + ' bytes)');
+                }
+            })
+            .catch(error => {
+                console.error('❌ Failed to fetch QR code:', error);
+                showStatus('error', '❌ Failed to fetch QR code: ' + error.message);
+            });
+    </script>
+</body>
+</html>

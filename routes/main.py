@@ -378,3 +378,37 @@ def auto_facebook_post():
 def facebook_test_page():
     """Facebook testing interface"""
     return render_template('facebook_test.html')
+
+
+@main_bp.route('/qr-test')
+def qr_test_page():
+    """QR Code testing page"""
+    return render_template('qr_test.html')
+
+
+@main_bp.route('/test-qr-direct')
+def test_qr_direct():
+    """Direct test of QR code file accessibility"""
+    import os
+    qr_path = os.path.join(current_app.static_folder, 'images', 'qr-codes', 'google-review-qr.png')
+    
+    if os.path.exists(qr_path):
+        file_size = os.path.getsize(qr_path)
+        return jsonify({
+            "status": "success",
+            "message": f"QR code file found! Size: {file_size} bytes",
+            "path": qr_path,
+            "url": url_for('static', filename='images/qr-codes/google-review-qr.png')
+        })
+    else:
+        return jsonify({
+            "status": "error", 
+            "message": "QR code file not found!",
+            "expected_path": qr_path
+        }), 404
+
+
+@main_bp.route('/qr-direct-test')
+def qr_direct_test_page():
+    """Direct QR code test page with simple HTML"""
+    return send_from_directory(current_app.static_folder, 'qr-direct-test.html')

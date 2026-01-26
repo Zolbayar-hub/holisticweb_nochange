@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .qr-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #ddd;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>🧪 QR Code Test Page</h1>
+    
+    <div class="qr-container">
+        <h3>Google Review QR Code</h3>
+        <img src="static/images/qr-codes/google-review-qr.png" 
+             alt="Google Review QR Code" 
+             class="qr-code"
+             onload="showStatus('success', 'QR code loaded successfully!')"
+             onerror="showStatus('error', 'Failed to load QR code. Check file path and permissions.')">
+        
+        <div id="status"></div>
+        
+        <p><strong>File path:</strong> <code>static/images/qr-codes/google-review-qr.png</code></p>
+        
+        <h4>📱 Test Instructions:</h4>
+        <ol style="text-align: left; max-width: 400px; margin: 0 auto;">
+            <li>Open your phone's camera app</li>
+            <li>Point it at the QR code above</li>
+            <li>Tap the notification/link that appears</li>
+            <li>It should open your Google Business Profile review page</li>
+        </ol>
+        
+        <p style="margin-top: 20px;">
+            <a href="/" style="color: #2c5530; text-decoration: none; font-weight: bold;">← Back to Main Website</a>
+        </p>
+    </div>
+
+    <script>
+        function showStatus(type, message) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = 'status ' + type;
+            statusDiv.textContent = message;
+        }
+        
+        // Test if file exists by trying to fetch it
+        fetch('static/images/qr-codes/google-review-qr.png')
+            .then(response => {
+                if (response.ok) {
+                    showStatus('success', '✅ QR code file is accessible via HTTP');
+                } else {
+                    showStatus('error', '❌ QR code file returned HTTP ' + response.status);
+                }
+            })
+            .catch(error => {
+                showStatus('error', '❌ Failed to fetch QR code: ' + error.message);
+            });
+    </script>
+</body>
+</html>
