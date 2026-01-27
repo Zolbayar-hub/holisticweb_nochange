@@ -347,11 +347,48 @@
     </main>
     
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 {{ settings.get('footer_text', 'Bio Energy Healer and Sound Therapy. All rights reserved. | Healing Mind, Body & Spirit') }}</p>
-        </div>
-    </footer>
+        <footer class="footer" style="background: var(--bg-main); padding: 3rem 0 2rem 0; border-top: 1.5px solid var(--neutral-stone);">
+            <div class="footer-main" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; max-width: 1400px; margin: 0 auto; gap: 2.5rem;">
+                <!-- Left: Logo and Description -->
+                <div style="flex: 1 1 320px; min-width: 260px; display: flex; flex-direction: column; align-items: flex-start;">
+                    <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="Serenity Wellness Studio Logo" style="height: 60px; margin-bottom: 1.2rem;">
+                    <div style="font-size: 1.15rem; color: var(--body); margin-bottom: 1.2rem; max-width: 340px;">
+                        Serenity Wellness Studio is your trusted destination for restorative sound healing and holistic wellness in a calm, welcoming space.
+                    </div>
+                </div>
+                <!-- Center: Useful Links -->
+                <div style="flex: 1 1 220px; min-width: 180px;">
+                    <h3 style="color: var(--brand-primary); font-size: 1.35rem; margin-bottom: 1.1rem; font-family: 'Inter', 'Arial', sans-serif;">Useful Links</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.08rem; color: var(--body);">
+                        <li style="margin-bottom: 0.7rem;"><a href="#home" style="color: var(--brand-primary); text-decoration: none;">Home</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="#services" style="color: var(--brand-primary); text-decoration: none;">Services</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="#about" style="color: var(--brand-primary); text-decoration: none;">About</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="{{ url_for('blog.index') }}" style="color: var(--brand-primary); text-decoration: none;">Blog</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="#contact" style="color: var(--brand-primary); text-decoration: none;">Contact</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="{{ url_for('booking.booking_page') }}" style="color: var(--brand-primary); text-decoration: none;">Book Now</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="{{ url_for('booking.my_bookings') }}" style="color: var(--brand-primary); text-decoration: none;">My Bookings</a></li>
+                    </ul>
+                </div>
+                <!-- Right: Contact Info -->
+                <div style="flex: 1 1 260px; min-width: 200px;">
+                    <h3 style="color: var(--brand-primary); font-size: 1.35rem; margin-bottom: 1.1rem; font-family: 'Inter', 'Arial', sans-serif;">Contact Info</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.08rem; color: var(--body);">
+                        {% if settings.get('business_phone') %}
+                        <li style="margin-bottom: 0.7rem;"><span style="margin-right: 0.5rem;">📞</span>{{ settings.get('business_phone') }}</li>
+                        {% endif %}
+                        {% if settings.get('business_email') %}
+                        <li style="margin-bottom: 0.7rem;"><span style="margin-right: 0.5rem;">✉️</span>{{ settings.get('business_email') }}</li>
+                        {% endif %}
+                        {% if settings.get('business_address') %}
+                        <li style="margin-bottom: 0.7rem;">📍 {{ settings.get('business_address') }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; color: var(--meta); font-size: 1rem; margin-top: 2.5rem;">
+                &copy; 2026 Serenity Wellness Studio. All rights reserved.
+            </div>
+        </footer>
     
     <!-- JavaScript -->
     <script src="{{ url_for('static', filename='auth.js') }}"></script>
