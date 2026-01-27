@@ -119,36 +119,23 @@
         <section class="services" id="services">
             <div class="container">
                 <h2 class="section-title">Our Therapeutic Services</h2>
-                <div class="services-carousel">
-                    <button class="carousel-btn carousel-btn-prev" id="carousel-prev">&lt;</button>
-                    <div class="services-container">
-                        <div class="services-grid" id="services-grid">
-                            {% for service in services %}
-                            <div class="service-card">
-                                {% if service.image_path %}
-                                <div class="service-image">
-                                    <img src="{{ url_for('static', filename=service.image_path) }}" alt="{{ service.name }}">
-                                </div>
-                                {% else %}
-                                <div class="service-icon">🧘‍♀️</div>
-                                {% endif %}
-                                <h3>{{ service.name }}</h3>
-                                <p>{{ service.description }}</p>
-                                <p><strong>Duration:</strong> {{ service.duration }} min</p>
-                                <p><strong>Price:</strong> ${{ '%.2f'|format(service.price) }}</p>
-                                <a href="{{ url_for('booking.booking_page') }}" class="service-book-btn">Book This Service</a>
-                            </div>
-                            {% endfor %}
+                <div class="services-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.2rem 2.2rem;">
+                    {% for service in services %}
+                    <div class="service-card">
+                        {% if service.image_path %}
+                        <div class="service-image">
+                            <img src="{{ url_for('static', filename=service.image_path) }}" alt="{{ service.name }}">
                         </div>
+                        {% else %}
+                        <div class="service-icon">🧘‍♀️</div>
+                        {% endif %}
+                        <h3>{{ service.name }}</h3>
+                        <p>{{ service.description }}</p>
+                        <p><strong>Duration:</strong> {{ service.duration }} min</p>
+                        <p><strong>Price:</strong> ${{ '%.2f'|format(service.price) }}</p>
+                        <a href="{{ url_for('booking.booking_page') }}" class="service-book-btn">Learn More &rarr;</a>
                     </div>
-                    <button class="carousel-btn carousel-btn-next" id="carousel-next">&gt;</button>
-                    
-                    <!-- Mobile indicators -->
-                    <div class="mobile-carousel-indicators" id="mobile-indicators">
-                        {% for service in services %}
-                        <div class="indicator-dot{% if loop.first %} active{% endif %}" data-index="{{ loop.index0 }}"></div>
-                        {% endfor %}
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
