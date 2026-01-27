@@ -211,81 +211,34 @@
         
         <!-- Testimonials Section -->
         <section class="testimonials" id="testimonials">
-            <div class="container">
-                <h2 class="section-title">What Our Clients Say</h2>
-                <p style="text-align: center; margin-bottom: 30px;">
-                    <button id="open-testimonial-btn" class="cta-button" style="font-size: 0.9rem; padding: 10px 20px; border: none; cursor: pointer;">
-                        Share Your Experience
-                    </button>
-                </p>
-                <div class="testimonials-carousel">
-                    <div class="testimonials-container">
-                        <div class="testimonials-grid" id="testimonials-grid">
-                            {% for testimonial in testimonials %}
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
-                                    <div class="stars">{{ testimonial.get_star_display() }}</div>
-                                    <p>"{{ testimonial.testimonial_text }}"</p>
-                                    <div class="testimonial-author">
-                                        <h4>{{ testimonial.client_name }}</h4>
-                                        {% if testimonial.client_title %}
-                                        <span>{{ testimonial.client_title }}</span>
-                                        {% endif %}
-                                    </div>
+            <div class="container testimonial-section-flex">
+                <!-- Left: Heading and Mission -->
+                <div class="testimonial-left">
+                    <div class="testimonial-label">TESTIMONIALS</div>
+                    <h2 class="testimonial-title">What They Say About Us</h2>
+                        <div class="testimonial-mission">At Serenity Wellness Studio, our mission is to support deep rest, balance, and well-being through restorative sound healing experiences. But don’t just take our word for it—hear what our clients share about their time with us.</div>
+                </div>
+                <!-- Right: Testimonial -->
+                <div class="testimonial-right">
+                    <div class="testimonial-carousel">
+                        <button class="testimonial-carousel-btn testimonial-carousel-prev" id="testimonial-prev">
+                            <span>&#x2039;</span>
+                        </button>
+                        <div class="testimonial-content">
+                            {% set t = testimonials[0] if testimonials else None %}
+                            <div class="testimonial-text">{{ t.testimonial_text if t else 'I was struggling with anxiety and didn’t know where to turn. Serenity Wellness provided a safe and welcoming environment where I received personalized care that actually worked. The treatment plan was clear, effective, and tailored to my needs. I am extremely grateful for their support.' }}</div>
+                            <div class="testimonial-reviewer">
+                                <img class="testimonial-reviewer-img" src="{{ url_for('static', filename='images/testimonials/default.jpg') }}" alt="Reviewer photo">
+                                <div class="testimonial-reviewer-info">
+                                    <div class="testimonial-reviewer-name">{{ t.client_name if t else 'Daniel R.' }}</div>
+                                    <div class="testimonial-reviewer-title">{{ t.client_title if t else 'Moreno Valley, CA' }}</div>
                                 </div>
                             </div>
-                            {% else %}
-                            <!-- Fallback testimonials if none in database -->
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
-                                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                                    <p>"The holistic approach here has completely transformed my life. I came in feeling stressed and overwhelmed, but now I feel balanced and at peace. The practitioners truly care about your whole well-being."</p>
-                                    <div class="testimonial-author">
-                                        <h4>Sarah Johnson</h4>
-                                        <span>Marketing Executive</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
-                                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                                    <p>"I've tried many different therapies over the years, but nothing compares to the integrated healing approach here. The combination of mind, body, and spirit work has been life-changing."</p>
-                                    <div class="testimonial-author">
-                                        <h4>Michael Chen</h4>
-                                        <span>Software Engineer</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
-                                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                                    <p>"After struggling with anxiety for years, I finally found relief through the personalized treatment plan they created for me. The practitioners are knowledgeable, compassionate, and truly gifted."</p>
-                                    <div class="testimonial-author">
-                                        <h4>Emily Rodriguez</h4>
-                                        <span>Teacher</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
-                                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                                    <p>"The healing environment here is unlike anywhere else. From the moment you walk in, you feel the positive energy. My sessions have helped me reconnect with myself and find inner peace."</p>
-                                    <div class="testimonial-author">
-                                        <h4>David Thompson</h4>
-                                        <span>Artist</span>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
                         </div>
+                        <button class="testimonial-carousel-btn testimonial-carousel-next" id="testimonial-next">
+                            <span>&#x203A;</span>
+                        </button>
                     </div>
-                    
-                    <!-- Navigation Buttons -->
-                    <button class="testimonial-carousel-btn testimonial-carousel-prev" id="testimonial-prev">&lt;</button>
-                    <button class="testimonial-carousel-btn testimonial-carousel-next" id="testimonial-next">&gt;</button>
                 </div>
             </div>
         </section>
