@@ -126,7 +126,7 @@
                         <div class="service-icon">🧘‍♀️</div>
                         {% endif %}
                         <h3>{{ service.name }}</h3>
-                        <p>{{ service.description }}</p>
+                        <p>{{ service.description[:70] }}{% if service.description|length > 70 %}...{% endif %}</p>
                         <p><strong>Duration:</strong> {{ service.duration }} min</p>
                         <p><strong>Price:</strong> ${{ '%.2f'|format(service.price) }}</p>
                         <a href="{{ url_for('booking.booking_page') }}" class="service-book-btn">Learn More &rarr;</a>
