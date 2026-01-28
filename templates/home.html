@@ -125,11 +125,11 @@
                         {% else %}
                         <div class="service-icon">🧘‍♀️</div>
                         {% endif %}
-                        <h3>{{ service.name }}</h3>
+                        <h3 style="margin: 0 0 0.5rem 0;">{{ service.name }}</h3>
                         <p>{{ service.description[:70] }}{% if service.description|length > 70 %}...{% endif %}</p>
                         <p><strong>Duration:</strong> {{ service.duration }} min</p>
-                        <p><strong>Price:</strong> ${{ '%.2f'|format(service.price) }}</p>
-                        <a href="{{ url_for('booking.booking_page') }}" class="service-book-btn">Learn More &rarr;</a>
+                        <p style="margin-bottom: 0.5rem;"><strong>Price:</strong> ${{ '%.2f'|format(service.price) }}</p>
+                        <a href="{{ url_for('booking.booking_page') }}" class="service-book-btn" style="white-space: nowrap;">Learn More &rarr;</a>
                     </div>
                     {% endfor %}
                 </div>
