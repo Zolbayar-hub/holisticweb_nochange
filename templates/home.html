@@ -288,26 +288,6 @@
                     </div>
                     {% endif %}
                     
-                    <!-- Google QR Code Section -->
-                    <div class="google-qr-section">
-                        <h3>📱 Leave us a Google Review</h3>
-                        <p>Scan the QR code below with your phone to quickly leave a review and help others discover our holistic wellness services.</p>
-                        <div class="qr-code-container">
-                            <img src="{{ url_for('static', filename='images/qr-codes/google-review-qr.png') }}" 
-                                 alt="Google Review QR Code" 
-                                 class="google-qr-code"
-                                 style="display: block; width: 150px; height: 150px; margin: 0 auto;"
-                                 onload="console.log('✅ QR code loaded successfully!');"
-                                 onerror="console.error('❌ QR code failed to load:', this.src); alert('QR code image not found. Please check the file path.');">
-                        </div>
-                        <div class="qr-instructions">
-                            Open your phone camera and point it at the QR code above
-                        </div>
-                        <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #666; text-align: center;">
-                            <small>QR Code URL: {{ url_for('static', filename='images/qr-codes/google-review-qr.png') }}</small>
-                        </div>
-                    </div>
-                            <small>Direct URL: <span id="qr-url">{{ url_for('static', filename='images/qr-codes/google-review-qr.png') }}</span></small>
                         </div>
                     </div>
                 </div>
@@ -327,7 +307,7 @@
                 </div>
                 <!-- Center: Useful Links -->
                 <div style="flex: 1 1 220px; min-width: 180px;">
-                    <h3 style="color: var(--brand-primary); font-size: 1.35rem; margin-bottom: 1.1rem; font-family: 'Inter', 'Arial', sans-serif;">Useful Links</h3>
+                    <h3 style="color: var(--meta); font-size: 1.35rem; margin-bottom: 1.1rem; font-family: 'Inter', 'Arial', sans-serif;">Useful Links</h3>
                     <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.08rem; color: var(--body);">
                         <li style="margin-bottom: 0.7rem;"><a href="#home" style="color: var(--brand-primary); text-decoration: none;">Home</a></li>
                         <li style="margin-bottom: 0.7rem;"><a href="#services" style="color: var(--brand-primary); text-decoration: none;">Services</a></li>
@@ -339,23 +319,41 @@
                     </ul>
                 </div>
                 <!-- Right: Contact Info -->
-                <div style="flex: 1 1 260px; min-width: 200px;">
-                    <h3 style="color: var(--brand-primary); font-size: 1.35rem; margin-bottom: 1.1rem; font-family: 'Inter', 'Arial', sans-serif;">Contact Info</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.08rem; color: var(--body);">
-                        {% if settings.get('business_phone') %}
-                        <li style="margin-bottom: 0.7rem;"><span style="margin-right: 0.5rem;">📞</span>{{ settings.get('business_phone') }}</li>
-                        {% endif %}
-                        {% if settings.get('business_email') %}
-                        <li style="margin-bottom: 0.7rem;"><span style="margin-right: 0.5rem;">✉️</span>{{ settings.get('business_email') }}</li>
-                        {% endif %}
-                        {% if settings.get('business_address') %}
-                        <li style="margin-bottom: 0.7rem;">📍 {{ settings.get('business_address') }}</li>
-                        {% endif %}
-                    </ul>
+                <div style="flex: 1 1 540px; min-width: 320px; display: flex; align-items: flex-start; gap: 2.5rem;">
+                    <div style="flex: 1 1 60%; min-width: 120px;">
+                        <h3 style="color: var(--brand-primary); font-size: 1.35rem; margin-bottom: 1.1rem; font-family: 'Inter', 'Arial', sans-serif;">Contact Info</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.08rem; color: var(--body);">
+                            {% if settings.get('business_phone') %}
+                            <li style="margin-bottom: 0.7rem;"><span style="margin-right: 0.5rem;">📞</span>{{ settings.get('business_phone') }}</li>
+                            {% endif %}
+                            {% if settings.get('business_email') %}
+                            <li style="margin-bottom: 0.7rem;"><span style="margin-right: 0.5rem;">✉️</span>{{ settings.get('business_email') }}</li>
+                            {% endif %}
+                            {% if settings.get('business_address') %}
+                            <li style="margin-bottom: 0.7rem;">📍 {{ settings.get('business_address') }}</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="google-qr-section" style="flex: 1 1 320px; min-width: 220px; max-width: 380px; background: #fff; border-radius: 18px; box-shadow: 0 4px 18px rgba(44,85,48,0.10); padding: 24px 18px 18px 18px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; border: 1.5px solid #f2ede7;">
+                        <h3 style="font-size: 1.7rem; font-family: 'Georgia', serif; color: #204b2a; font-weight: 700; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.3rem;">📱</span>Leave us a Google Review</h3>
+                        <p style="font-size: 1.15rem; color: #555; margin-bottom: 1.2rem; font-family: 'Georgia', serif; text-align: center;">Scan the QR code below with your phone to quickly leave a review and help others discover our holistic wellness services.</p>
+                        <div class="qr-code-container" style="background: #fcf7f3; border-radius: 16px; padding: 22px 18px; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center;">
+                            <img src="/static/images/qr-codes/1google-review-qr.png" 
+                                 alt="Google Review QR Code" 
+                                 class="google-qr-code"
+                                 style="display: block; width: 150px; height: 150px; margin: 0 auto; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgba(44,85,48,0.07);"
+                                 onload="console.log('✅ QR code loaded successfully!');"
+                                 onerror="console.error('❌ QR code failed to load:', this.src);">
+                        </div>
+                        <div class="qr-instructions" style="font-size: 1.05rem; color: #888; font-style: italic; margin-bottom: 0.5rem; text-align: center;">Open your phone camera and point it at the QR code above</div>
+                        <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #666; text-align: center;">
+                            <small>QR Code URL: /static/images/qr-codes/1google-review-qr.png</small>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="text-align: center; color: var(--meta); font-size: 1rem; margin-top: 2.5rem;">
-                &copy; 2026 Serenity Wellness Studio. All rights reserved.
+                <span style="color: var(--brand-primary);">&copy; 2026 Serenity Wellness Studio. All rights reserved.</span>
             </div>
         </footer>
     
