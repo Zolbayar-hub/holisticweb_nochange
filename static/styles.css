@@ -1,4 +1,33 @@
 /* Footer - Calm, Soft, Grounded */
+.all-headings, h1, h2, h3, h4, h5, h6 {
+    color: var(--heading) !important;
+}
+
+body, p, li, span, div, a, td, th, label, input, textarea, select, button {
+    color: #000 !important;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 21.45px !important;
+    font-weight: 400 !important;
+}
+
+body {
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 21.45px !important;
+    font-weight: 400 !important;
+}
+
+/* Content size constraint */
+.content {
+    width: 481.75px;
+    height: 316.781px;
+    max-width: 100vw;
+    max-height: 100vh;
+    box-sizing: border-box;
+    margin: 0 auto;
+    /* Add overflow: auto if content may overflow */
+}
 .footer {
     background: var(--bg-main);
     color: var(--meta);
