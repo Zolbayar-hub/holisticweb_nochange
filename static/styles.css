@@ -1,7 +1,37 @@
-/* Footer - Calm, Soft, Grounded */
-.all-headings, h1, h2, h3, h4, h5, h6 {
-    color: var(--heading) !important;
+/* Apply this class to your grid/tile container: "teal-tint" */
+.teal-tint .avia-image-container,
+.teal-tint .av-masonry-entry,
+.teal-tint .av-image-caption-overlay {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px; /* optional */
 }
+
+/* Teal overlay using #2F6E73 */
+.teal-tint .avia-image-container::after,
+.teal-tint .av-masonry-entry::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #2F6E73;
+    opacity: 0.55; /* adjust: 0.40 lighter, 0.70 darker */
+    pointer-events: none;
+}
+
+/* Muted photo look (optional) */
+.teal-tint img {
+    filter: saturate(0.75) contrast(0.95) brightness(0.95);
+}
+/* Footer - Calm, Soft, Grounded */
+/* All headings use #2E1D0E */
+/* All headings use #2E1D0E except h2/h3 */
+.all-headings, h1, h4, h5, h6 {
+    color: #2E1D0E !important;
+}
+h2, h3 {
+    color: #775733 !important;
+}
+
 
 body, p, li, span, div, a, td, th, label, input, textarea, select, button {
     color: #000 !important;
@@ -594,7 +624,7 @@ body {
 /* Make the testimonial 'Share Your Experience' button clearly visible on the testimonials section */
 /* Testimonials Section - Screenshot Match */
 .testimonials {
-    background: #28706e;
+    background: var(--bg-main);
     color: #fff;
     padding: 0;
     border-radius: 0;
@@ -606,7 +636,7 @@ body {
     justify-content: center;
     padding: 4vw 0 4vw 0;
     gap: 0;
-    background: #28706e;
+    background: var(--bg-main);
 }
 .testimonial-left {
     flex: 1 1 50%;
@@ -1109,19 +1139,25 @@ body {
 }
 
 .contact-form button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 15px;
+    background: var(--brand-primary);
+    color: var(--bg-section);
+    padding: 1.1rem 2.5rem;
     border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
+    border-radius: 22px;
+    font-size: 1.25rem;
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 32px 0 rgba(217,210,200,0.10), 0 1.5px 6px 0 rgba(79,127,122,0.04);
+    backdrop-filter: blur(2px);
     cursor: pointer;
     transition: all 0.3s;
 }
 
 .contact-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 32px 0 rgba(217,210,200,0.18), 0 2px 8px 0 rgba(79,127,122,0.08);
+    background: var(--brand-primary-hover);
 }
 
 /* Google QR Code Section */
