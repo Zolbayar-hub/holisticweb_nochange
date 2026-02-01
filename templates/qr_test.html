@@ -67,17 +67,17 @@
     
     <div class="qr-container">
         <h3>Google Review QR Code</h3>
-        <img src="{{ url_for('static', filename='images/qr-codes/google-review-qr.png') }}" 
-             alt="Google Review QR Code" 
-             class="qr-code"
-             onload="showStatus('success', '✅ QR code loaded successfully!')"
-             onerror="showStatus('error', '❌ Failed to load QR code. Check file path and permissions.')">
+           <img src="{{ url_for('static', filename='images/qr-codes/qr-code.jpg') }}" 
+               alt="QR Code" 
+               class="qr-code"
+               onload="showStatus('success', '✅ QR code loaded successfully!')"
+               onerror="showStatus('error', '❌ Failed to load QR code. Check file path and permissions.')">
         
         <div id="status"></div>
         
         <div class="info">
             <p><strong>File URL:</strong><br>
-            <code>{{ url_for('static', filename='images/qr-codes/google-review-qr.png') }}</code></p>
+            <code>{{ url_for('static', filename='images/qr-codes/qr-code.jpg') }}</code></p>
         </div>
         
         <h4>📱 Test Instructions:</h4>
