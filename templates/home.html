@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Bio Energy healer and Sound Therapy- Heal Your Mind, Body & Spirit</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='what_to_expect.css') }}">
     <!-- Optimized for mobile performance -->
     <style>
         html, body { 
@@ -97,60 +98,131 @@
     <main class="main-content">
         <!-- Hero Section -->
         <section class="hero" id="home" style="position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center;">
-            <img id="hero-image" 
-                 src="{{ url_for('static', filename=settings.get('home_image', 'images/main_page_images/meditating_woman.jpg')) }}" 
-                 alt="Hero Background" 
-                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;"
-                 onerror="console.error('Hero image failed to load:', this.src); this.src='{{ url_for('static', filename='images/main_page_images/meditating_woman.jpg') }}';">
-            <!-- Debug: Current home_image setting = {{ settings.get('home_image', 'NOT SET') }} -->
-            <!-- Debug: Language = {{ current_language }} -->
-            
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3)); z-index: -1;"></div>
-            <div class="hero-content" style="text-align: center !important; position: relative; z-index: 1; width: 100%;">
-                <h1>{{ settings.get('hero_title', 'Bio Energy Healer and Sound Therapy') }}</h1>
-                <p style="text-align: center !important; margin: 0 auto;">{{ settings.get('hero_subtitle', 'Discover the power of integrated healing for your mind, body, and spirit. Our comprehensive approach combines traditional wisdom with modern techniques to help you achieve optimal wellness.') }}</p>
-                <a href="#services" class="cta-button">Explore Our Services</a>
-                <a href="{{ url_for('booking.booking_page') }}" class="cta-button" style="margin-left: 15px;">Book Now</a>
-            </div>
-        </section>
+                            <img id="hero-image" 
+                                    src="{{ url_for('static', filename=settings.get('home_image', 'images/main_page_images/meditating_woman.jpg')) }}" 
+                                    alt="Hero Background" 
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;"
+                                    onerror="console.error('Hero image failed to load:', this.src); this.src='{{ url_for('static', filename='images/main_page_images/meditating_woman.jpg') }}';">
+                            <div class="hero-overlay-content" style="width: 100%; text-align: center; position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 7vw; padding-bottom: 4vw;">
+                                <h1 style="font-size: 4vw; color: #fff; font-weight: 600; margin-bottom: 1vw; text-shadow: 0 2px 16px rgba(0,0,0,0.18); letter-spacing: 0.01em;">
+                                    Peace Through Sound
+                                    <div style="height:3vw;"></div>
+                                    Starts Here
+                                </h1>
+                                <div style="font-size: 1.7vw; color: #fff; margin-bottom: 2vw; text-shadow: 0 2px 12px rgba(0,0,0,0.18); font-weight: 400;">Sound healing experiences crafted for relaxation and inner balance</div>
+                                <div style="display: flex; gap: 2vw; justify-content: center; margin-bottom: 3vw; flex-wrap: wrap;">
+                                    <a href="#services" style="background: #ffe000; color: #222; font-size: 1.4vw; font-weight: 600; border-radius: 2.5vw; padding: 1vw 3vw; border: none; box-shadow: 0 2px 12px rgba(0,0,0,0.10); text-decoration: none; transition: background 0.2s;">Discover Our Services</a>
+                                    <a href="{{ url_for('booking.booking_page') }}" style="background: transparent; color: #fff; font-size: 1.4vw; font-weight: 600; border-radius: 2.5vw; padding: 1vw 3vw; border: 3px solid #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.10); text-decoration: none; margin-left: 1vw; transition: background 0.2s, color 0.2s;">Begin Your Healing</a>
+                                </div>
+                                <div style="display: flex; gap: 4vw; justify-content: center; margin-top: 2vw; flex-wrap: wrap;">
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 2.5vw; color: #ffe000; font-weight: 700; display: flex; align-items: center; justify-content: center;"><span style="font-size: 2.5vw;">5</span><span style="font-size: 2vw; margin-left: 0.3vw;">&#9733;</span></div>
+                                        <div style="font-size: 1.1vw; color: #fff; margin-top: 0.3vw;">Client Reviews</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 2.5vw; color: #ffe000; font-weight: 700;">500+</div>
+                                        <div style="font-size: 1.1vw; color: #fff; margin-top: 0.3vw;">Sessions Guided</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 2.5vw; color: #ffe000; font-weight: 700;">4+</div>
+                                        <div style="font-size: 1.1vw; color: #fff; margin-top: 0.3vw;">Years Experience</div>
+                                    </div>
+                                </div>
+                            </div>
+                </section>
+
+
+        
         
         <!-- Services Section -->
         <section class="services" id="services">
             <div class="container">
-                <h2 class="section-title">Our Therapeutic Services</h2>
-                <div class="services-carousel">
-                    <button class="carousel-btn carousel-btn-prev" id="carousel-prev">&lt;</button>
-                    <div class="services-container">
-                        <div class="services-grid" id="services-grid">
-                            {% for service in services %}
-                            <div class="service-card">
-                                {% if service.image_path %}
-                                <div class="service-image">
-                                    <img src="{{ url_for('static', filename=service.image_path) }}" alt="{{ service.name }}">
-                                </div>
-                                {% else %}
-                                <div class="service-icon">🧘‍♀️</div>
-                                {% endif %}
-                                <h3>{{ service.name }}</h3>
-                                <p>{{ service.description }}</p>
-                                <p><strong>Duration:</strong> {{ service.duration }} min</p>
-                                <p><strong>Price:</strong> ${{ '%.2f'|format(service.price) }}</p>
-                                <a href="{{ url_for('booking.booking_page') }}" class="service-book-btn">Book This Service</a>
+                <h2 class="section-title" style="margin-top: 1.5rem; text-align: center; margin-left: auto; margin-right: auto; width: fit-content;">Our Therapeutic Services</h2>
+
+
+
+                <div class="services-grid teal-tint" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.2rem 2.2rem;">
+                    {% for service in services %}
+                    <div class="service-card">
+                        {% if service.image_path %}
+                        <div class="service-image">
+                            <img src="{{ url_for('static', filename=service.image_path) }}" alt="{{ service.name }}">
+                        </div>
+                        {% else %}
+                        <div class="service-icon">🧘‍♀️</div>
+                        {% endif %}
+                        <h3 style="margin: 0 0 0.5rem 0;">{{ service.name }}</h3>
+                        <p>{{ service.description[:70] }}{% if service.description|length > 70 %}...{% endif %}</p>
+                        <p><strong>Duration:</strong> {{ service.duration }} min</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Price:</strong> ${{ '%.2f'|format(service.price) }}</p>
+                        <a href="{{ url_for('booking.booking_page') }}" class="service-book-btn" style="white-space: nowrap;">Learn More &rarr;</a>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- What to Expect Section -->
+                <section class="what-to-expect-section" style="margin-top: 3.5rem;">
+                    <div class="what-to-expect-content">
+                        <div class="what-to-expect-title">What to Expect</div>
+                        <div class="expect-columns">
+                            <div class="expect-col">
+                                <div class="expect-icon">📝</div>
+                                <h3>Before your session</h3>
+                                <p>After you book, you’ll receive simple guidance so you feel prepared and comfortable. Wear loose, cozy clothing, arrive a few minutes early, and bring anything that helps you relax (water, a journal, or a light layer). If you’d like, we’ll begin with a quick check-in to understand how you’re feeling and what you want from your session—rest, clarity, emotional ease, or a gentle reset.</p>
                             </div>
-                            {% endfor %}
+                            <div class="expect-col">
+                                <div class="expect-icon">🧘‍♂️</div>
+                                <h3>During your session</h3>
+                                <p>You’ll settle into a calm, nurturing space and get comfortable—lying down or seated. We’ll guide you into stillness with a soft grounding moment, then begin the sound experience using soothing instruments and healing frequencies. You don’t need to “do” anything—just breathe, listen, and receive. Many people notice their mind quieting, their body relaxing, and their breath naturally slowing as the vibrations support deep rest.</p>
+                            </div>
+                            <div class="expect-col">
+                                <div class="expect-icon">🌿</div>
+                                <h3>After your session</h3>
+                                <p>We’ll give you a few minutes to reawaken gently, hydrate, and return at your own pace. You may feel lighter, calmer, or more centered—sometimes deeply relaxed, sometimes refreshed and clear. We’ll share simple aftercare tips to help the peace continue, like hydration, quiet time, and gentle reflection. If you’re building a steady wellness rhythm, we can recommend a session plan that fits your needs.</p>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-btn carousel-btn-next" id="carousel-next">&gt;</button>
-                    
-                    <!-- Mobile indicators -->
-                    <div class="mobile-carousel-indicators" id="mobile-indicators">
-                        {% for service in services %}
-                        <div class="indicator-dot{% if loop.first %} active{% endif %}" data-index="{{ loop.index0 }}"></div>
-                        {% endfor %}
-                    </div>
-                </div>
+                </section>
+
+
             </div>
         </section>
+                <!-- Serenity Wellness Section -->
+                <link rel="stylesheet" href="{{ url_for('static', filename='serenity_wellness.css') }}">
+                <section class="sw-section">
+                    <div class="sw-wrap">
+                        <div class="sw-left">
+                            <div class="sw-title" style="color: #6A8A5D; font-size: 64px; font-weight: 900; letter-spacing: 0.5px;">Serenity Wellness Studio</div>
+                            <p class="sw-lead">Sound healing is a gentle way to support your nervous system and overall well-being. Through calming frequencies and vibration, sound healing can help reduce stress, quiet the mind, and bring the body back into balance.</p>
+                            <ul style="margin: 36px 0 0 0; padding: 0; list-style: none;">
+                                <li style="margin-bottom: 28px; display: flex; align-items: flex-start;">
+                                    <span class="sw-check-circle"><span class="sw-check">&#10003;</span></span>
+                                    <div>
+                                        <div style="font-weight: 700; color: var(--taupe); font-size: 22px; margin-bottom: 2px;">An Integrated Holistic Approach</div>
+                                        <div style="color: rgba(64,34,11,.78); font-size: 16px;">We combine sound therapy with mindful relaxation practices to support the mind, body, and spirit. Each session is designed to help you release tension, restore balance, and feel grounded and renewed.</div>
+                                    </div>
+                                </li>
+                                <li style="margin-bottom: 28px; display: flex; align-items: flex-start;">
+                                    <span class="sw-check-circle"><span class="sw-check">&#10003;</span></span>
+                                    <div>
+                                        <div style="font-weight: 700; color: var(--taupe); font-size: 22px; margin-bottom: 2px;">Client-First Sessions</div>
+                                        <div style="color: rgba(64,34,11,.78); font-size: 16px;">Every person is unique. We take time to understand your needs and customize your experience—whether you’re seeking deep relaxation, emotional reset, better sleep, or relief from daily stress.</div>
+                                    </div>
+                                </li>
+                                <li style="display: flex; align-items: flex-start;">
+                                    <span class="sw-check-circle"><span class="sw-check">&#10003;</span></span>
+                                    <div>
+                                        <div style="font-weight: 700; color: var(--taupe); font-size: 22px; margin-bottom: 2px;">Evidence-Informed Sound Healing</div>
+                                        <div style="color: rgba(64,34,11,.78); font-size: 16px;">Our sessions are guided by techniques that support relaxation and nervous system regulation. We use high-quality instruments and thoughtful session flow to create a safe, calming environment that promotes clarity, peace, and inner balance.</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sw-right">
+                            <img src="{{ url_for('static', filename='images/serenity_wellness.jpg') }}" alt="Serenity Wellness Sound Healing Room">
+                        </div>
+                    </div>
+                </section>
         
         <!-- About Section -->
         <section class="about" id="about">
@@ -227,81 +299,34 @@
         
         <!-- Testimonials Section -->
         <section class="testimonials" id="testimonials">
-            <div class="container">
-                <h2 class="section-title">What Our Clients Say</h2>
-                <p style="text-align: center; margin-bottom: 30px;">
-                    <button id="open-testimonial-btn" class="cta-button" style="font-size: 0.9rem; padding: 10px 20px; border: none; cursor: pointer;">
-                        Share Your Experience
-                    </button>
-                </p>
-                <div class="testimonials-carousel">
-                    <div class="testimonials-container">
-                        <div class="testimonials-grid" id="testimonials-grid">
-                            {% for testimonial in testimonials %}
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
-                                    <div class="stars">{{ testimonial.get_star_display() }}</div>
-                                    <p>"{{ testimonial.testimonial_text }}"</p>
-                                    <div class="testimonial-author">
-                                        <h4>{{ testimonial.client_name }}</h4>
-                                        {% if testimonial.client_title %}
-                                        <span>{{ testimonial.client_title }}</span>
-                                        {% endif %}
-                                    </div>
+            <div class="container testimonial-section-flex">
+                <!-- Left: Heading and Mission -->
+                <div class="testimonial-left">
+                    <div class="testimonial-label">TESTIMONIALS</div>
+                    <h2 class="testimonial-title">What They Say About Us</h2>
+                        <div class="testimonial-mission">At Serenity Wellness Studio, our mission is to support deep rest, balance, and well-being through restorative sound healing experiences. But don’t just take our word for it—hear what our clients share about their time with us.</div>
+                </div>
+                <!-- Right: Testimonial -->
+                <div class="testimonial-right">
+                    <div class="testimonial-carousel">
+                        <button class="testimonial-carousel-btn testimonial-carousel-prev" id="testimonial-prev">
+                            <span>&#x2039;</span>
+                        </button>
+                        <div class="testimonial-content">
+                            {% set t = testimonials[0] if testimonials else None %}
+                            <div class="testimonial-text">{{ t.testimonial_text if t else 'I was struggling with anxiety and didn’t know where to turn. Serenity Wellness provided a safe and welcoming environment where I received personalized care that actually worked. The treatment plan was clear, effective, and tailored to my needs. I am extremely grateful for their support.' }}</div>
+                            <div class="testimonial-reviewer">
+                                <img class="testimonial-reviewer-img" src="{{ url_for('static', filename='images/testimonials/default.jpg') }}" alt="Reviewer photo">
+                                <div class="testimonial-reviewer-info">
+                                    <div class="testimonial-reviewer-name">{{ t.client_name if t else 'Daniel R.' }}</div>
+                                    <div class="testimonial-reviewer-title">{{ t.client_title if t else 'Moreno Valley, CA' }}</div>
                                 </div>
                             </div>
-                            {% else %}
-                            <!-- Fallback testimonials if none in database -->
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
-                                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                                    <p>"The holistic approach here has completely transformed my life. I came in feeling stressed and overwhelmed, but now I feel balanced and at peace. The practitioners truly care about your whole well-being."</p>
-                                    <div class="testimonial-author">
-                                        <h4>Sarah Johnson</h4>
-                                        <span>Marketing Executive</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
-                                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                                    <p>"I've tried many different therapies over the years, but nothing compares to the integrated healing approach here. The combination of mind, body, and spirit work has been life-changing."</p>
-                                    <div class="testimonial-author">
-                                        <h4>Michael Chen</h4>
-                                        <span>Software Engineer</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
-                                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                                    <p>"After struggling with anxiety for years, I finally found relief through the personalized treatment plan they created for me. The practitioners are knowledgeable, compassionate, and truly gifted."</p>
-                                    <div class="testimonial-author">
-                                        <h4>Emily Rodriguez</h4>
-                                        <span>Teacher</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
-                                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                                    <p>"The healing environment here is unlike anywhere else. From the moment you walk in, you feel the positive energy. My sessions have helped me reconnect with myself and find inner peace."</p>
-                                    <div class="testimonial-author">
-                                        <h4>David Thompson</h4>
-                                        <span>Artist</span>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
                         </div>
+                        <button class="testimonial-carousel-btn testimonial-carousel-next" id="testimonial-next">
+                            <span>&#x203A;</span>
+                        </button>
                     </div>
-                    
-                    <!-- Navigation Buttons -->
-                    <button class="testimonial-carousel-btn testimonial-carousel-prev" id="testimonial-prev">&lt;</button>
-                    <button class="testimonial-carousel-btn testimonial-carousel-next" id="testimonial-next">&gt;</button>
                 </div>
             </div>
         </section>
@@ -334,17 +359,70 @@
                         {% endif %}
                     </div>
                     {% endif %}
+                    
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
     
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 {{ settings.get('footer_text', 'Bio Energy Healer and Sound Therapy. All rights reserved. | Healing Mind, Body & Spirit') }}</p>
-        </div>
-    </footer>
+        <footer class="footer" style="background: var(--bg-main); padding: 3rem 0 2rem 0; border-top: 1.5px solid var(--neutral-stone);">
+            <div class="footer-main" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; max-width: 1400px; margin: 0 auto; gap: 2.5rem;">
+                <!-- Left: Logo and Description -->
+                <div style="flex: 1 1 320px; min-width: 260px; display: flex; flex-direction: column; align-items: flex-start;">
+                    <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="Serenity Wellness Studio Logo" style="height: 60px; margin-bottom: 1.2rem;">
+                    <div style="font-size: 1.15rem; color: var(--body); margin-bottom: 1.2rem; max-width: 340px;">
+                        Serenity Wellness Studio is your trusted destination for restorative sound healing and holistic wellness in a calm, welcoming space.
+                    </div>
+                </div>
+                <!-- Center: Useful Links -->
+                <div style="flex: 1 1 220px; min-width: 180px;">
+                    <h3 style="color: var(--meta); font-size: 1.35rem; margin-bottom: 1.1rem; font-family: 'Inter', 'Arial', sans-serif;">Useful Links</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.08rem; color: var(--body);">
+                        <li style="margin-bottom: 0.7rem;"><a href="#home" style="color: var(--brand-primary); text-decoration: none;">Home</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="#services" style="color: var(--brand-primary); text-decoration: none;">Services</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="#about" style="color: var(--brand-primary); text-decoration: none;">About</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="{{ url_for('blog.index') }}" style="color: var(--brand-primary); text-decoration: none;">Blog</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="#contact" style="color: var(--brand-primary); text-decoration: none;">Contact</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="{{ url_for('booking.booking_page') }}" style="color: var(--brand-primary); text-decoration: none;">Book Now</a></li>
+                        <li style="margin-bottom: 0.7rem;"><a href="{{ url_for('booking.my_bookings') }}" style="color: var(--brand-primary); text-decoration: none;">My Bookings</a></li>
+                    </ul>
+                </div>
+                <!-- Right: Contact Info -->
+                <div style="flex: 1 1 540px; min-width: 320px; display: flex; align-items: flex-start; gap: 2.5rem;">
+                    <div style="flex: 1 1 60%; min-width: 120px;">
+                        <h3 style="color: var(--brand-primary); font-size: 1.35rem; margin-bottom: 1.1rem; font-family: 'Inter', 'Arial', sans-serif;">Contact Info</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.08rem; color: var(--body);">
+                            {% if settings.get('business_phone') %}
+                            <li style="margin-bottom: 0.7rem;"><span style="margin-right: 0.5rem;">📞</span>{{ settings.get('business_phone') }}</li>
+                            {% endif %}
+                            {% if settings.get('business_email') %}
+                            <li style="margin-bottom: 0.7rem;"><span style="margin-right: 0.5rem;">✉️</span>{{ settings.get('business_email') }}</li>
+                            {% endif %}
+                            {% if settings.get('business_address') %}
+                            <li style="margin-bottom: 0.7rem;">📍 {{ settings.get('business_address') }}</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="google-qr-section" style="flex: 1 1 320px; min-width: 220px; max-width: 380px; background: #fff; border-radius: 18px; box-shadow: 0 4px 18px rgba(44,85,48,0.10); padding: 24px 18px 18px 18px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; border: 1.5px solid #f2ede7;">
+                        <h3 style="font-size: 1.7rem; font-family: 'Georgia', serif; color: #204b2a; font-weight: 700; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.3rem;">📱</span>Leave us a Google Review</h3>
+                        <div class="qr-code-container" style="background: #fcf7f3; border-radius: 16px; padding: 22px 18px; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center;">
+                               <img src="/static/images/qr-codes/qr-code.jpg" 
+                                   alt="QR Code" 
+                                   class="google-qr-code"
+                                   style="display: block; width: 150px; height: 150px; margin: 0 auto; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgba(44,85,48,0.07);"
+                                   onload="console.log('✅ QR code loaded successfully!');"
+                                   onerror="console.error('❌ QR code failed to load:', this.src);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; color: var(--meta); font-size: 1rem; margin-top: 2.5rem;">
+                <span style="color: var(--brand-primary);">&copy; 2026 Serenity Wellness Studio. All rights reserved.</span>
+            </div>
+        </footer>
     
     <!-- JavaScript -->
     <script src="{{ url_for('static', filename='auth.js') }}"></script>
