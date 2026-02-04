@@ -6,6 +6,7 @@
     <title>Bio Energy healer and Sound Therapy- Heal Your Mind, Body & Spirit</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='what_to_expect.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='events.css') }}">
     <!-- Optimized for mobile performance -->
     <style>
         html, body { 
@@ -130,6 +131,13 @@
                                 </div>
                             </div>
                 </section>
+                                <!-- Serenity Wellness Studio event section removed -->
+                            </article>
+                        </div>
+
+                        <!-- Moon Gathering Dates section removed -->
+                    </div>
+                </section>
 
 
         
@@ -160,29 +168,107 @@
                     {% endfor %}
                 </div>
 
-                <!-- What to Expect Section -->
-                <section class="what-to-expect-section" style="margin-top: 3.5rem;">
-                    <div class="what-to-expect-content">
-                        <div class="what-to-expect-title">What to Expect</div>
-                        <div class="expect-columns">
-                            <div class="expect-col">
-                                <div class="expect-icon">📝</div>
-                                <h3>Before your session</h3>
-                                <p>After you book, you’ll receive simple guidance so you feel prepared and comfortable. Wear loose, cozy clothing, arrive a few minutes early, and bring anything that helps you relax (water, a journal, or a light layer). If you’d like, we’ll begin with a quick check-in to understand how you’re feeling and what you want from your session—rest, clarity, emotional ease, or a gentle reset.</p>
-                            </div>
-                            <div class="expect-col">
-                                <div class="expect-icon">🧘‍♂️</div>
-                                <h3>During your session</h3>
-                                <p>You’ll settle into a calm, nurturing space and get comfortable—lying down or seated. We’ll guide you into stillness with a soft grounding moment, then begin the sound experience using soothing instruments and healing frequencies. You don’t need to “do” anything—just breathe, listen, and receive. Many people notice their mind quieting, their body relaxing, and their breath naturally slowing as the vibrations support deep rest.</p>
-                            </div>
-                            <div class="expect-col">
-                                <div class="expect-icon">🌿</div>
-                                <h3>After your session</h3>
-                                <p>We’ll give you a few minutes to reawaken gently, hydrate, and return at your own pace. You may feel lighter, calmer, or more centered—sometimes deeply relaxed, sometimes refreshed and clear. We’ll share simple aftercare tips to help the peace continue, like hydration, quiet time, and gentle reflection. If you’re building a steady wellness rhythm, we can recommend a session plan that fits your needs.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                                <!-- Schedule / Events Section -->
+                                <section class="events-section events-floral" id="events">
+  <!-- Floral corner overlays -->
+    <img class="flower flower-tl" src="{{ url_for('static', filename='images/flower-top-left.png') }}" alt="" aria-hidden="true">
+    <img class="flower flower-tr" src="{{ url_for('static', filename='images/flower-top-right.png') }}" alt="" aria-hidden="true">
+    <img class="flower flower-bl" src="{{ url_for('static', filename='images/flower-bottom-left.png') }}" alt="" aria-hidden="true">
+    <img class="flower flower-br" src="{{ url_for('static', filename='images/flower-bottom-right.png') }}" alt="" aria-hidden="true">
+                                    <div class="events-wrap">
+                                        <div class="events-head">
+                                            <p class="events-kicker">SCHEDULE / EVENTS</p>
+                                            <h2 class="events-title">Upcoming Gatherings</h2>
+                                            <p class="events-sub">
+                                                Join our weekly wellness meetups and monthly moon gatherings.
+                                            </p>
+                                        </div>
+
+                                        <div class="events-grid">
+                                            <!-- Weekly -->
+                                            <article class="event-card">
+                                                <div class="event-top">
+                                                    <span class="event-badge">Weekly</span>
+                                                    <span class="event-day">Every Tuesday</span>
+                                                </div>
+
+                                                <h3 class="event-name">Matcha Tea & Meditation</h3>
+
+                                                <div class="event-meta">
+                                                    <span class="meta-item">🕙 10:00 AM</span>
+                                                    <span class="meta-item">📍 Serenity Wellness Studio</span>
+                                                </div>
+
+                                                <p class="event-desc">
+                                                    A calming morning gathering with matcha tea, guided meditation, and gentle breathwork.
+                                                </p>
+
+                                                <div class="event-actions">
+                                                    <a class="btn-primary" href="#book">Reserve a spot</a>
+                                                    <a class="btn-link" href="#contact">Questions?</a>
+                                                </div>
+                                            </article>
+
+                                            <!-- Monthly -->
+                                            <article class="event-card">
+                                                <div class="event-top">
+                                                    <span class="event-badge monthly">Monthly</span>
+                                                    <span class="event-day">Once a month</span>
+                                                </div>
+
+                                                <h3 class="event-name">Full Moon / New Moon Gatherings</h3>
+
+                                                <div class="event-meta">
+                                                    <span class="meta-item">🌙 Dates vary</span>
+                                                    <span class="meta-item">📍 Serenity Wellness Studio</span>
+                                                </div>
+
+                                                <p class="event-desc">
+                                                    A restorative sound healing + intention setting circle. Full Moon for release, New Moon for renewal.
+                                                </p>
+
+                                                <div class="event-actions">
+                                                    <a class="btn-primary" href="#book">Get notified</a>
+                                                    <a class="btn-link" href="#events-calendar">View dates</a>
+                                                </div>
+                                            </article>
+                                        </div>
+
+                                        <!-- Optional: simple dates list -->
+                                        <div class="events-dates" id="events-calendar">
+                                            <h4 class="dates-title">Moon Gathering Dates (Optional)</h4>
+                                            <ul class="dates-list">
+                                                <li><span>New Moon</span> <strong>— Add date here</strong> <em>7:00 PM</em></li>
+                                                <li><span>Full Moon</span> <strong>— Add date here</strong> <em>7:00 PM</em></li>
+                                            </ul>
+                                            <p class="dates-note">Tip: update these monthly or link to your booking calendar.</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- What to Expect Section -->
+                                <section class="what-to-expect-section" style="margin-top: 3.5rem;">
+                                        <div class="what-to-expect-content">
+                                                <div class="what-to-expect-title">What to Expect</div>
+                                                <div class="expect-columns">
+                                                        <div class="expect-col">
+                                                                <div class="expect-icon">📝</div>
+                                                                <h3>Before your session</h3>
+                                                                <p>After you book, you’ll receive simple guidance so you feel prepared and comfortable. Wear loose, cozy clothing, arrive a few minutes early, and bring anything that helps you relax (water, a journal, or a light layer). If you’d like, we’ll begin with a quick check-in to understand how you’re feeling and what you want from your session—rest, clarity, emotional ease, or a gentle reset.</p>
+                                                        </div>
+                                                        <div class="expect-col">
+                                                                <div class="expect-icon">🧘‍♂️</div>
+                                                                <h3>During your session</h3>
+                                                                <p>You’ll settle into a calm, nurturing space and get comfortable—lying down or seated. We’ll guide you into stillness with a soft grounding moment, then begin the sound experience using soothing instruments and healing frequencies. You don’t need to “do” anything—just breathe, listen, and receive. Many people notice their mind quieting, their body relaxing, and their breath naturally slowing as the vibrations support deep rest.</p>
+                                                        </div>
+                                                        <div class="expect-col">
+                                                                <div class="expect-icon">🌿</div>
+                                                                <h3>After your session</h3>
+                                                                <p>We’ll give you a few minutes to reawaken gently, hydrate, and return at your own pace. You may feel lighter, calmer, or more centered—sometimes deeply relaxed, sometimes refreshed and clear. We’ll share simple aftercare tips to help the peace continue, like hydration, quiet time, and gentle reflection. If you’re building a steady wellness rhythm, we can recommend a session plan that fits your needs.</p>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </section>
 
 
             </div>
