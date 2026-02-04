@@ -402,7 +402,7 @@
                             {% set t = testimonials[0] if testimonials else None %}
                             <div class="testimonial-text">{{ t.testimonial_text if t else 'I was struggling with anxiety and didn’t know where to turn. Serenity Wellness provided a safe and welcoming environment where I received personalized care that actually worked. The treatment plan was clear, effective, and tailored to my needs. I am extremely grateful for their support.' }}</div>
                             <div class="testimonial-reviewer">
-                                <img class="testimonial-reviewer-img" src="{{ url_for('static', filename='images/testimonials/default.jpg') }}" alt="Reviewer photo">
+                                <img class="testimonial-reviewer-img" src="{{ url_for('static', filename='images/testimonials/default.png') }}" alt="Reviewer photo">
                                 <div class="testimonial-reviewer-info">
                                     <div class="testimonial-reviewer-name">{{ t.client_name if t else 'Daniel R.' }}</div>
                                     <div class="testimonial-reviewer-title">{{ t.client_title if t else 'Moreno Valley, CA' }}</div>
