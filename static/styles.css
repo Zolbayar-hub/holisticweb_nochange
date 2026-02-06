@@ -355,10 +355,23 @@ body {
     outline: none;
 }
 
-/* Show hamburger on mobile devices */
+/* Show hamburger only on mobile devices */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
+    }
+}
+
+@media (min-width: 769px) {
+    .hamburger {
+        display: none !important;
+        pointer-events: none !important;
+        visibility: hidden !important;
+    }
+    .mobile-menu {
+        display: none !important;
+        pointer-events: none !important;
+        visibility: hidden !important;
     }
 }
 
@@ -401,32 +414,30 @@ body {
 }
 
 /* Mobile Menu */
+
 .mobile-menu {
     position: absolute;
     top: 100%;
     right: 0;
-    width: 280px;
-    max-width: calc(100vw - 2rem);
-    background: rgba(102, 126, 234, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    width: 90vw;
+    max-width: 340px;
+    background: rgba(40, 48, 80, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    border-radius: 0 0 10px 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.22);
+    border-radius: 0 0 18px 18px;
+    border: 1.5px solid rgba(255, 255, 255, 0.13);
     border-top: none;
-    padding: 1rem 0;
-
-    /* Hide by default */
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+    margin-top: 0.5rem;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
     z-index: 9999;
-    
-    /* Prevent text selection and touch behaviors */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -464,46 +475,57 @@ body {
     width: 100%;
 }
 
+
 .mobile-menu ul li {
     margin: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
+    padding: 0;
 }
 
 .mobile-menu ul li:last-child {
     border-bottom: none;
 }
 
+
 .mobile-menu ul li a {
-    color: white;
+    color: #fff;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1.13rem;
     font-weight: 500;
-    transition: all 0.3s;
+    transition: background 0.2s, color 0.2s;
     display: block;
-    padding: 1rem 1.5rem;
+    padding: 0.95rem 1.5rem 0.95rem 1.5rem;
+    border-radius: 8px;
+    margin: 0.15rem 0.5rem;
 }
 
+
 .mobile-menu ul li a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #f0f0f0;
+    background: rgba(255, 255, 255, 0.13);
+    color: #ffe082;
+    text-shadow: 0 1px 8px rgba(255,255,255,0.12);
 }
 
 /* Auth button in mobile menu */
 #mobile-auth-btn {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 0.75rem 1rem;
-    border-radius: 5px;
+    background: linear-gradient(90deg, #667eea 60%, #4F7F7A 100%);
+    color: #fff;
+    border: none;
+    padding: 0.85rem 1.2rem;
+    border-radius: 8px;
     cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    margin: 1rem;
+    font-weight: 600;
+    font-size: 1.08rem;
+    margin: 1.2rem 1.5rem 0.5rem 1.5rem;
+    box-shadow: 0 2px 12px rgba(102,126,234,0.13);
+    transition: background 0.2s, color 0.2s, transform 0.15s;
 }
 
 #mobile-auth-btn:hover {
-    background: rgba(255,255,255,0.3);
-    transform: translateY(-1px);
+    background: #4F7F7A;
+    color: #ffe082;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 18px rgba(102,126,234,0.18);
 }
 
 #mobile-auth-btn.logout-btn {
@@ -518,8 +540,9 @@ body {
 
 /* Mobile language switcher styling */
 .mobile-language-switcher {
-    padding: 1rem 1.5rem !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 1.1rem 1.5rem 0.7rem 1.5rem !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+    margin-bottom: 0.2rem;
 }
 
 .mobile-language-switcher select {
@@ -531,6 +554,13 @@ body {
     background-position: right 0.7rem center;
     background-size: 1em;
     padding-right: 2.5rem;
+    border-radius: 6px;
+    border: 1.5px solid #fff;
+    background-color: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 1.05rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
 }
 
 .mobile-language-switcher select option {

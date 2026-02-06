@@ -1,0 +1,229 @@
+
+.events-floral{
+  position: relative;
+  overflow: hidden; /* hides flower edges */
+}
+
+/* flower images */
+.events-floral .flower{
+  position: absolute;
+  width: min(260px, 32vw);
+  height: auto;
+  opacity: 0.95;
+  pointer-events: none; /* clickable buttons still work */
+  z-index: 1;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* corners */
+.events-floral .flower-tl{ top: -20px; left: -20px; }
+.events-floral .flower-tr{ top: -20px; right: -20px; transform: scaleX(-1); }
+.events-floral .flower-bl{ bottom: -30px; left: -25px; }
+.events-floral .flower-br{ bottom: -30px; right: -25px; transform: scaleX(-1); }
+
+/* keep your real content above the flowers */
+.events-floral .events-wrap{
+  position: relative;
+  z-index: 2;
+}
+
+/* optional: soft glow / bokeh overlay */
+.events-floral::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,.55), transparent 35%),
+    radial-gradient(circle at 15% 25%, rgba(255,255,255,.35), transparent 30%),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,.28), transparent 35%);
+  z-index: 0;
+  pointer-events:none;
+}
+
+/* mobile: smaller flowers */
+@media (max-width: 650px){
+  .events-floral .flower{ width: 200px; opacity: .85; }
+}
+:root{
+  --bg: #F6CEB5;
+  --accent: #A08479;
+  --text: #40220B;
+  --muted: rgba(64,34,11,.75);
+  --card: rgba(255,255,255,.32);
+  --line: rgba(64,34,11,.12);
+}
+
+.events-section{
+  background: var(--bg);
+  padding: 70px 0;
+  margin-top: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.events-wrap{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.events-kicker{
+  margin: 0 0 10px;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.events-title{
+  margin: 0 0 12px;
+  font-size: 44px;
+  line-height: 1.05;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.events-sub{
+  margin: 0 0 28px;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 70ch;
+}
+
+.events-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.event-card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 16px 40px rgba(64,34,11,.10);
+}
+
+.event-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom: 12px;
+}
+
+.event-badge{
+  display:inline-flex;
+  align-items:center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(160,132,121,.22);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.event-badge.monthly{
+  background: rgba(195,138,102,.22);
+}
+
+.event-day{
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.event-name{
+  margin: 0 0 10px;
+  font-size: 22px;
+  color: var(--text);
+}
+
+.event-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px 14px;
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.event-desc{
+  margin: 0 0 16px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.event-actions{
+  display:flex;
+  gap: 12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.btn-primary{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration:none;
+  font-weight: 700;
+}
+
+.btn-primary:hover{ opacity: .92; }
+
+.btn-link{
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(64,34,11,.35);
+  padding-bottom: 2px;
+}
+
+.events-dates{
+  margin-top: 22px;
+  background: rgba(255,255,255,.22);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px 22px;
+}
+
+.dates-title{
+  margin: 0 0 10px;
+  color: var(--text);
+  font-size: 16px;
+}
+
+.dates-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.dates-list li{
+  display:flex;
+  gap: 10px;
+  flex-wrap:wrap;
+  color: var(--muted);
+}
+
+.dates-list span{
+  font-weight: 700;
+  color: var(--text);
+}
+
+.dates-note{
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 900px){
+  .events-grid{ grid-template-columns: 1fr; }
+  .events-title{ font-size: 36px; }
+}
