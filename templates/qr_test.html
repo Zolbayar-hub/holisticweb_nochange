@@ -87,42 +87,6 @@
             <li>Tap the notification/link that appears</li>
             <li>It should open your Google Business Profile review page</li>
         </ol>
-        
-        <div style="margin-top: 30px;">
-            <a href="{{ url_for('main.home') }}" class="btn btn-primary">← Back to Main Website</a>
-            <a href="{{ url_for('main.test_qr_direct') }}" class="btn btn-secondary">🔍 Test File Access (JSON)</a>
-        </div>
     </div>
-
-    <script>
-        function showStatus(type, message) {
-            const statusDiv = document.getElementById('status');
-            statusDiv.className = 'status ' + type;
-            statusDiv.innerHTML = message;
-        }
-        
-        // Test if file exists by trying to fetch it
-        const qrUrl = "{{ url_for('static', filename='images/qr-codes/google-review-qr.png') }}";
-        
-        fetch(qrUrl)
-            .then(response => {
-                if (response.ok) {
-                    console.log('✅ QR code file is accessible via HTTP');
-                    return response.blob();
-                } else {
-                    throw new Error('HTTP ' + response.status);
-                }
-            })
-            .then(blob => {
-                console.log('✅ QR code file size:', blob.size, 'bytes');
-                if (blob.size < 100) {
-                    showStatus('error', '⚠️ QR code file seems too small (' + blob.size + ' bytes)');
-                }
-            })
-            .catch(error => {
-                console.error('❌ Failed to fetch QR code:', error);
-                showStatus('error', '❌ Failed to fetch QR code: ' + error.message);
-            });
-    </script>
 </body>
 </html>

@@ -24,15 +24,15 @@
 </head>
 <body>
     <!-- Header with Navigation -->
-    <header class="header">
-        <nav class="nav-container">
+    <header class="header" style="background: linear-gradient(90deg, #4F7F7A 0%, #6bbf59 100%); box-shadow: 0 2px 12px rgba(79,127,122,0.08); position: sticky; top: 0; z-index: 10000;">
+        <nav class="nav-container" style="color: #fff;">
             <a href="#" class="logo">
-                <div class="logo-image">
+                <div class="logo-image" style="background: rgba(255,255,255,0.18); box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="Serenity Wellness Logo" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
                 <div class="logo-text">
-                    <span class="main-text">SERENITY</span>
-                    <span class="sub-text">WELLNESS Studio</span>
+                    <span class="main-text" style="color: #fff;">SERENITY</span>
+                    <span class="sub-text" style="color: #e0ffe0;">WELLNESS Studio</span>
                 </div>
             </a>
             
@@ -99,12 +99,13 @@
     <main class="main-content">
         <!-- Hero Section -->
         <section class="hero" id="home" style="position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center;">
-                            <img id="hero-image" 
+                                <img id="hero-image" 
                                     src="{{ url_for('static', filename=settings.get('home_image', 'images/main_page_images/meditating_woman.jpg')) }}" 
                                     alt="Hero Background" 
                                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;"
                                     onerror="console.error('Hero image failed to load:', this.src); this.src='{{ url_for('static', filename='images/main_page_images/meditating_woman.jpg') }}';">
-                            <div class="hero-overlay-content" style="width: 100%; text-align: center; position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 7vw; padding-bottom: 4vw;">
+                                <div class="hero-overlay-content" style="width: 100%; text-align: center; position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 7vw; padding-bottom: 4vw;">
+                                <!-- Removed side objects for mobile hero image -->
                                 <h1 style="font-size: 4vw; color: #fff; font-weight: 600; margin-bottom: 1vw; text-shadow: 0 2px 16px rgba(0,0,0,0.18); letter-spacing: 0.01em;">
                                     Peace Through Sound
                                     <div style="height:3vw;"></div>
@@ -116,28 +117,12 @@
                                     <a href="{{ url_for('booking.booking_page') }}" style="background: transparent; color: #fff; font-size: 1.4vw; font-weight: 600; border-radius: 2.5vw; padding: 1vw 3vw; border: 3px solid #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.10); text-decoration: none; margin-left: 1vw; transition: background 0.2s, color 0.2s;">Begin Your Healing</a>
                                 </div>
                                 <div style="display: flex; gap: 4vw; justify-content: center; margin-top: 2vw; flex-wrap: wrap;">
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 2.5vw; color: #ffe000; font-weight: 700; display: flex; align-items: center; justify-content: center;"><span style="font-size: 2.5vw;">5</span><span style="font-size: 2vw; margin-left: 0.3vw;">&#9733;</span></div>
-                                        <div style="font-size: 1.1vw; color: #fff; margin-top: 0.3vw;">Client Reviews</div>
-                                    </div>
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 2.5vw; color: #ffe000; font-weight: 700;">500+</div>
-                                        <div style="font-size: 1.1vw; color: #fff; margin-top: 0.3vw;">Sessions Guided</div>
-                                    </div>
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 2.5vw; color: #ffe000; font-weight: 700;">4+</div>
-                                        <div style="font-size: 1.1vw; color: #fff; margin-top: 0.3vw;">Years Experience</div>
-                                    </div>
+                                    <!-- Removed review, sessions, and experience stats for minimal hero section on mobile -->
                                 </div>
                             </div>
                 </section>
-                                <!-- Serenity Wellness Studio event section removed -->
-                            </article>
-                        </div>
-
-                        <!-- Moon Gathering Dates section removed -->
-                    </div>
-                </section>
+        </section>
+        <div style="height: 3rem;"></div> <!-- Added space below hero section -->
 
 
         
@@ -163,18 +148,29 @@
                         <p>{{ service.description[:70] }}{% if service.description|length > 70 %}...{% endif %}</p>
                         <p><strong>Duration:</strong> {{ service.duration }} min</p>
                         <p style="margin-bottom: 0.5rem;"><strong>Price:</strong> ${{ '%.2f'|format(service.price) }}</p>
-                        <a href="{{ url_for('booking.booking_page') }}" class="service-book-btn" style="white-space: nowrap;">Learn More &rarr;</a>
+                        <a href="{{ url_for('booking.booking_page') }}" class="btn-primary" style="white-space: nowrap;">Learn More &rarr;</a>
                     </div>
                     {% endfor %}
+                    <style>
+                    @media (max-width: 700px) {
+                        .services-grid {
+                            grid-template-columns: 1fr !important;
+                            gap: 1.5rem 0.5rem !important;
+                            justify-items: center !important;
+                        }
+                        .service-card {
+                            margin: 0 auto;
+                            max-width: 95vw;
+                            width: 100%;
+                            box-sizing: border-box;
+                        }
+                    }
+                    </style>
                 </div>
 
                                 <!-- Schedule / Events Section -->
                                 <section class="events-section events-floral" id="events">
-  <!-- Floral corner overlays -->
-    <img class="flower flower-tl" src="{{ url_for('static', filename='images/flower-top-left.png') }}" alt="" aria-hidden="true">
-    <img class="flower flower-tr" src="{{ url_for('static', filename='images/flower-top-right.png') }}" alt="" aria-hidden="true">
-    <img class="flower flower-bl" src="{{ url_for('static', filename='images/flower-bottom-left.png') }}" alt="" aria-hidden="true">
-    <img class="flower flower-br" src="{{ url_for('static', filename='images/flower-bottom-right.png') }}" alt="" aria-hidden="true">
+    <!-- Removed floral corner overlays for cleaner mobile and desktop hero/event sections -->
                                     <div class="events-wrap">
                                         <div class="events-head">
                                             <p class="events-kicker">SCHEDULE / EVENTS</p>
@@ -444,7 +440,13 @@
                         <p><strong>Address:</strong> {{ settings.get('business_address') }}</p>
                         {% endif %}
                     </div>
+                    <!-- QR code placed between address and footer -->
+                    <div style="width: 100%; display: flex; justify-content: center; align-items: center; margin: 2.5rem 0 0 0;">
+                        <img src="{{ url_for('static', filename='images/qr-codes/qr-code.jpg') }}" alt="QR Code" style="width: 300px; height: 300px; display: block; background: transparent; border: none; box-shadow: none; margin: 0; padding: 0;" />
+                    </div>
+                    </div>
                     {% endif %}
+                    <!-- QR code removed for minimal mobile homepage -->
                     
                         </div>
                     </div>
@@ -457,9 +459,9 @@
         <footer class="footer" style="background: var(--bg-main); padding: 3rem 0 2rem 0; border-top: 1.5px solid var(--neutral-stone);">
             <div class="footer-main" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; max-width: 1400px; margin: 0 auto; gap: 2.5rem;">
                 <!-- Left: Logo and Description -->
-                <div style="flex: 1 1 320px; min-width: 260px; display: flex; flex-direction: column; align-items: flex-start;">
-                    <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="Serenity Wellness Studio Logo" style="height: 60px; margin-bottom: 1.2rem;">
-                    <div style="font-size: 1.15rem; color: var(--body); margin-bottom: 1.2rem; max-width: 340px;">
+                <div style="flex: 1 1 320px; min-width: 260px; display: flex; flex-direction: column; align-items: center;">
+                    <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="Serenity Wellness Studio Logo" style="height: 70px; margin-bottom: 1.2rem; display: block; margin-left: auto; margin-right: auto;" />
+                    <div style="font-size: 1.15rem; color: var(--body); margin-bottom: 1.2rem; max-width: 340px; text-align: center;">
                         Serenity Wellness Studio is your trusted destination for restorative sound healing and holistic wellness in a calm, welcoming space.
                     </div>
                 </div>
@@ -492,19 +494,9 @@
                             {% endif %}
                         </ul>
                     </div>
-                    <div class="google-qr-section" style="flex: 1 1 320px; min-width: 220px; max-width: 380px; background: #fff; border-radius: 18px; box-shadow: 0 4px 18px rgba(44,85,48,0.10); padding: 24px 18px 18px 18px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; border: 1.5px solid #f2ede7;">
-                        <h3 style="font-size: 1.7rem; font-family: 'Georgia', serif; color: #204b2a; font-weight: 700; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.3rem;">📱</span>Leave us a Google Review</h3>
-                        <div class="qr-code-container" style="background: #fcf7f3; border-radius: 16px; padding: 22px 18px; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center;">
-                               <img src="/static/images/qr-codes/qr-code.jpg" 
-                                   alt="QR Code" 
-                                   class="google-qr-code"
-                                   style="display: block; width: 150px; height: 150px; margin: 0 auto; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgba(44,85,48,0.07);"
-                                   onload="console.log('✅ QR code loaded successfully!');"
-                                   onerror="console.error('❌ QR code failed to load:', this.src);">
-                        </div>
-                    </div>
                 </div>
             </div>
+            <!-- QR code above footer removed -->
             <div style="text-align: center; color: var(--meta); font-size: 1rem; margin-top: 2.5rem;">
                 <span style="color: var(--brand-primary);">&copy; 2026 Serenity Wellness Studio. All rights reserved.</span>
             </div>

@@ -1168,27 +1168,28 @@ body {
     border-color: #667eea;
 }
 
-.contact-form button {
-    background: var(--brand-primary);
-    color: var(--bg-section);
-    padding: 1.1rem 2.5rem;
-    border: none;
-    border-radius: 22px;
-    font-size: 1.25rem;
-    font-family: 'Cormorant Garamond', 'Georgia', serif;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    box-shadow: 0 4px 32px 0 rgba(217,210,200,0.10), 0 1.5px 6px 0 rgba(79,127,122,0.04);
-    backdrop-filter: blur(2px);
-    cursor: pointer;
-    transition: all 0.3s;
-}
+    .contact-form button {
+        background: linear-gradient(90deg, #4F7F7A 0%, #6bbf59 100%);
+        color: #fff;
+        padding: 1.1rem 2.5rem;
+        border: none;
+        border-radius: 22px;
+        font-size: 1.25rem;
+        font-family: 'Cormorant Garamond', 'Georgia', serif;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        box-shadow: 0 4px 32px 0 rgba(217,210,200,0.10), 0 1.5px 6px 0 rgba(79,127,122,0.04);
+        backdrop-filter: blur(2px);
+        cursor: pointer;
+        transition: all 0.3s;
+    }
 
-.contact-form button:hover {
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 8px 32px 0 rgba(217,210,200,0.18), 0 2px 8px 0 rgba(79,127,122,0.08);
-    background: var(--brand-primary-hover);
-}
+    .contact-form button:hover {
+        transform: translateY(-2px) scale(1.04);
+        box-shadow: 0 8px 32px 0 rgba(217,210,200,0.18), 0 2px 8px 0 rgba(79,127,122,0.08);
+        background: linear-gradient(90deg, #3F6A66 0%, #5fa94a 100%);
+        color: #fff;
+    }
 
 /* Google QR Code Section */
 .google-qr-section {
@@ -1541,7 +1542,11 @@ body {
     }
     
     .header {
-        padding: 1rem;
+        min-height: 120px;
+        padding-top: 32px;
+        padding-bottom: 32px;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 }
 

@@ -8,6 +8,36 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="{{ url_for('main.home') }}" class="logo">Holistic Wellness</a>
+            <!-- Desktop Navigation -->
+            <ul class="desktop-nav">
+                <li><a href="{{ url_for('main.home') }}#home">Home</a></li>
+                <li><a href="{{ url_for('main.home') }}#services">Services</a></li>
+                <li><a href="{{ url_for('main.home') }}#about">About</a></li>
+                <li><a href="{{ url_for('main.home') }}#contact">Contact</a></li>
+                <li><a href="{{ url_for('booking.booking_page') }}">Book Now</a></li>
+            </ul>
+            <!-- Mobile Hamburger Button -->
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <!-- Mobile Menu Dropdown -->
+            <div class="mobile-menu" id="mobile-menu">
+                <ul>
+                    <li><a href="{{ url_for('main.home') }}#home">Home</a></li>
+                    <li><a href="{{ url_for('main.home') }}#services">Services</a></li>
+                    <li><a href="{{ url_for('main.home') }}#about">About</a></li>
+                    <li><a href="{{ url_for('main.home') }}#contact">Contact</a></li>
+                    <li><a href="{{ url_for('booking.booking_page') }}">Book Now</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
     <div class="container">
         <header class="booking-header">
             <h1><i class="fas fa-lotus"></i> Book Your Holistic Session</h1>
@@ -214,5 +244,6 @@
     </div>
 
     <script src="{{ url_for('static', filename='book.js') }}"></script>
+    <script src="{{ url_for('static', filename='book_nav.js') }}"></script>
 </body>
 </html>
